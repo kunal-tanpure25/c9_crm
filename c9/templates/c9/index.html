@@ -1,0 +1,301 @@
+{% extends "c9/base.html" %}
+{% block title %}C9 CRM{% endblock title %}
+{% block content %}
+    <style>
+        :root {
+            --primary-color: #0084ff;
+            --secondary-color: #00c853;
+            --danger-color: #ff3d00;
+            --background-color: #ffffff;
+            --card-background: #f8f9fa;
+            --text-color: #333333;
+            --header-height: 64px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: var(--primary-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .button {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all var(--transition-speed);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 100px;
+            color: inherit;
+            text-decoration: none;
+        }
+        a {
+            color: inherit; /* Inherit the color from the parent element */
+            text-decoration: none; /* Remove the underline */
+            }
+
+        .button-primary {
+            background-color: var(--secondary-color);
+            color: white;
+            text-emphasis: none;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .button-secondary {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .button-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: var(--header-height);
+            min-height: calc(100vh - var(--header-height));
+            padding: 40px 20px;
+        }
+
+        .hero-section {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 60px 0;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-color);
+            align-items: center;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+            align-items: center;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            padding: 20px;
+        }
+
+        .feature-card {
+            background: var(--card-background);
+            border-radius: 8px;
+            padding: 24px;
+            transition: transform var(--transition-speed);
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--text-color);
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 20px;
+            margin: 40px 0;
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h4 {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 40px 0;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="hero-text">
+                <h1>Welcome to C9 CRM</h1>
+                <p>Streamline your customer relationships with our powerful CRM solution. Boost productivity and grow your business with advanced tools and insights.</p>
+                <button class="button button-primary" onclick=""><a href="{% url "signup" %}" class="signup">Sign Up</a></button>
+            </div>
+            <div class="hero-image">
+
+            </div>
+        </section>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Customer Management</h3>
+                <p>Organize and manage your customer data efficiently. Track interactions, history, and preferences in one place.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📋</div>
+                <h3>Task Tracking</h3>
+                <p>Stay on top of your tasks with our intuitive task management system. Set priorities and never miss a deadline.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Analytics Dashboard</h3>
+                <p>Make data-driven decisions with comprehensive analytics and insights about your business performance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile Access</h3>
+                <p>Access your CRM anywhere, anytime with our mobile-responsive platform and dedicated mobile app.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Team Collaboration</h3>
+                <p>Work together seamlessly with team sharing, real-time updates, and collaborative tools.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔔</div>
+                <h3>Smart Notifications</h3>
+                <p>Stay informed with intelligent notifications about important updates and customer activities.</p>
+            </div>
+        </div>
+
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h4>10K+</h4>
+                    <p>Active Users</p>
+                </div>
+                <div class="stat-item">
+                    <h4>5M+</h4>
+                    <p>Customers Managed</p>
+                </div>
+                <div class="stat-item">
+                    <h4>99.9%</h4>
+                    <p>Uptime</p>
+                </div>
+                <div class="stat-item">
+                    <h4>24/7</h4>
+                    <p>Customer Support</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
+{% endblock content %}

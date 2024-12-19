@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .about {
+            background-color: red;
+        }
+
+        .container {
+            width: auto;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: space-between;
+        }
+        .ad {
+            width: auto;
+            height: 100px;
+            text-align: center;
+            text-justify: auto;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #007bff;
+            color: #fff;
+            padding: 1rem 0;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .navbar .auth-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .navbar .auth-links a {
+            text-decoration: none;
+            font-size: 0.9rem;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .navbar .auth-links a.signup {
+            background-color: #28a745;
+        }
+
+        .navbar .auth-links a.signup:hover {
+            background-color: #218838;
+        }
+
+        .navbar .auth-links a.login {
+            background-color: #17a2b8;
+        }
+
+        .navbar .auth-links a.login:hover {
+            background-color: #138496;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer p {
+            text-align: center;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="https://www.instagram.com/" class="logo">C9 CRM</a>
+            <div class="auth-links">
+                {% if request.user.is_authenticated %}
+                    <a href="{% url "logout" %}" class="logout">Logout</a>
+                    <a href="{% url "dashboard" %}" class="dashboard">dashboard</a>
+                {% else %}
+                    <a href="{% url "signup" %}" class="signup">Sign Up</a>
+                    <a href="{% url "login" %}" class="login">Log In</a>
+                    <a href="{%url "about" %}" class = "about">About</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock content %}
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Simple CRM. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "c9/base.html" %}
+{% block title %} Log in {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3>Log in</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" action=".">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="reset" class="btn btn-secondary">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
